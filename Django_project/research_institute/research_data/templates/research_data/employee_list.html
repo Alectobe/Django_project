@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список сотрудников</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            min-height: 100vh; /* устанавливаем минимальную высоту равной высоте видимой области */
+            position: relative; /* устанавливаем позицию относительно окна браузера для footer */
+        }
+        header {
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 60px; /* учитываем высоту footer */
+        }
+        main ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        main ul li {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+        main ul li:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #007BFF;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%; /* ширина footer равна ширине экрана */
+            position: fixed; /* фиксируем footer */
+            bottom: 0; /* располагаем footer внизу */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Список сотрудников</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="{% url 'employee_new' %}">Добавить сотрудника</a></li>
+                <li><a href="{% url 'project_list' %}">Просмотр проектов</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <ul>
+            {% for employee in employees %}
+            <li>{{ employee.first_name }} {{ employee.last_name }} - {{ employee.position }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <p>© 2024 Научно-исследовательский институт</p>
+    </footer>
+</body>
+</html>
